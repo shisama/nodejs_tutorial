@@ -1,12 +1,11 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
     console.log(`http method: ${req.method}\n`, req.headers);
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify({
-      id: 12345,
-      message: 'Hello World!\n'
-    }));
+    const data = fs.readFileSync('./data.json');
+    res.write(data.toString());
     res.end();
   });
 
