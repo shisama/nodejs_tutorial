@@ -7,6 +7,7 @@ const server = http.createServer((req, res) => {
     const data = fs.readFileSync('./data.json');
     res.write(data.toString());
     res.end();
+    fs.writeFileSync('./request-time.log', `${new Date()} ${req.headers['user-agent']}`)
   });
 
 const PORT = process.env.PORT || 3000;
